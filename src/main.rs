@@ -1,3 +1,4 @@
+use rand::Rng;
 fn main() {
     println!("Hello, world!");
     // s comes into the scope
@@ -25,6 +26,8 @@ fn main() {
     let (tuple2, len) = calculate_length(tuple_some);
     println!("the length of '{tuple2}' is {len}.");
 
+    let rand_val = use_random();
+    println!("{rand_val}");
    
 }
 pub fn takes_ownership(some_string: String){
@@ -44,4 +47,8 @@ pub fn gives_and_takes_ownership(a_string:String)->String{
 pub fn calculate_length(s:String) -> (String, usize) {
     let length: usize = s.len();
     (s,length)
+}
+pub fn use_random()->i32{
+    let a = rand::thread_rng().gen_range(1..=100);
+    a
 }
