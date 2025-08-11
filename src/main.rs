@@ -33,6 +33,9 @@ fn main() {
     //only taking the reference of the string. not the actual string is moving to the function. only pointing to the address of the string instance.
     let s_cal2 = calculate_len_of_tupple(&s_cal);
     println!("the size of the tupple is {s_cal2}");
+
+    let mut some_string = String::from("hellow!");
+    borrow_some_val(&mut some_string);
    
 }
 pub fn takes_ownership(some_string: String){
@@ -60,4 +63,10 @@ pub fn use_random()->i32{
 //understanding borrowing
 pub fn calculate_len_of_tupple( s: &String)-> usize {
     s.len()
+}
+//exmp of borrowing
+pub fn borrow_some_val(s: &mut String){
+    s.push_str(", let's push it");
+    println!("{s}");
+    
 }
