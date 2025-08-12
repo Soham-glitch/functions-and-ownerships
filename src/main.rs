@@ -36,7 +36,14 @@ fn main() {
 
     let mut some_string = String::from("hellow!");
     borrow_some_val(&mut some_string);
-   
+    let reference_to_nothing = dangle();
+    println!("{reference_to_nothing}");
+
+    //one string with two words
+   let mut string = String::from("hi from hello");
+    let word = two_string_of_words(&string);
+    println!("{word}");
+    string.clear();
 }
 pub fn takes_ownership(some_string: String){
     println!("{some_string}");
@@ -69,4 +76,20 @@ pub fn borrow_some_val(s: &mut String){
     s.push_str(", let's push it");
     println!("{s}");
     
+}
+//example of a dangling pointer that reference to noting
+
+pub fn dangle ()-> String {
+    let s = String::from("dangle the string");
+    s
+}
+pub fn two_string_of_words(s: &String) -> usize{
+    let arr_of_bytes: &[u8] = s.as_bytes();
+    for (i, &item) in arr_of_bytes.iter().enumerate() {
+        if item == b' '{
+            return i;
+        }
+    }
+
+    s.len()
 }
